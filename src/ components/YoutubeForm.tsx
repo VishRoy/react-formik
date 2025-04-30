@@ -32,9 +32,11 @@ const YoutubeForm = () => {
             </div>
             <label htmlFor='email'>Email</label>
             <Field type='text' id='email' name='email' />
-            <div style={{ color: 'red' }}>
-              <ErrorMessage name="email" component="div" />
-            </div>
+              {/* render props  */}
+              <ErrorMessage name="email">
+                {( errorMsg: any ) => <div style={{color:'red'}}>{errorMsg}</div>} 
+              </ErrorMessage>
+            
             <label htmlFor='channel'>Channel</label>
             <Field type='text' id='channel' name='channel' />
             <div style={{ color: 'red' }}>
