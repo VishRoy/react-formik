@@ -5,7 +5,9 @@ import * as Yup from 'yup';
 const initialValues = {
   name: '',
   email: '',
-  channel: ''
+  channel: '',
+  comments: '',
+  address: '',
 }
 
 const onSubmit = (values: any) => {
@@ -15,7 +17,8 @@ const onSubmit = (values: any) => {
 const validationSchema = Yup.object({
   name: Yup.string().required('Required'),
   email: Yup.string().email('Invalid email address').required('Required'),
-  channel: Yup.string().required('Required')
+  channel: Yup.string().required('Required'),
+  comments: Yup.string()
 })
 
 const YoutubeForm = () => {
@@ -38,6 +41,21 @@ const YoutubeForm = () => {
               <ErrorMessage name="channel" component="div" />
             </div>
 
+            <label htmlFor='comments'>Comments</label>
+            <Field as='textarea' id='comments' name='comments' />
+            <div>
+              <label htmlFor='address'>Address</label>
+              <Field name='address'>
+                {(props: { field: any; form: any, meta: any }) => {
+                  return (
+                  <div>
+                    <input type='text' id='address' {...props.field}/>
+                    {props.meta.touched && props.meta.error ? <div>{props.meta.error}</div> : null}
+                  </div>
+                  )
+                }}
+              </Field>
+            </div>
             <button type='submit'>Submit</button>
         </Form>
     </Formik>
